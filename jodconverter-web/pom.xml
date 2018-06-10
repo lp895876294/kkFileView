@@ -23,11 +23,18 @@
     </properties>
     <repositories>
         <repository>
-            <!-- required for org.hyperic:sigar -->
             <id>jboss-public-repository-group</id>
             <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
         </repository>
     </repositories>
+
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>jboss-public-repository-group</id>-->
+            <!--<url>http://maven.fosung.com/nexus/content/groups/jar-all/</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
