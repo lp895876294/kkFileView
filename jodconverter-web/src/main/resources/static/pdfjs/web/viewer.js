@@ -1890,6 +1890,7 @@ var validateFileURL = void 0;
     if (file === undefined) {
       return file;
     }
+    // debugger;
     try {
       var viewerOrigin = new URL(window.location.href).origin || 'null';
       if (HOSTED_VIEWER_ORIGINS.indexOf(viewerOrigin) >= 0) {
@@ -1932,9 +1933,15 @@ function webViewerInitialized() {
   var appConfig = PDFViewerApplication.appConfig;
   var file = void 0;
   var queryString = document.location.search.substring(1);
-  var params = (0, _ui_utils.parseQueryString)(queryString);
+  // debugger;
+  // var params = (0, _ui_utils.parseQueryString)(queryString);
+    var params = {
+      file : queryString.toString().replace("file=" , "")
+    };
   file = 'file' in params ? params.file : appConfig.defaultUrl;
+    console.log("预览文件->"+file) ;
   file = validateFileURL(file);
+
   var waitForBeforeOpening = [];
   var fileInput = document.createElement('input');
   fileInput.id = appConfig.openFileInputName;
