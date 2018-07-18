@@ -14,16 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.net.www.http.HttpClient;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLDecoder;
+import java.net.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -96,26 +94,35 @@ public class OnlinePreviewController {
      */
     @RequestMapping(value = "/getCorsFile", method = RequestMethod.GET)
     public void getCorsFile(String urlPath, HttpServletResponse resp) {
-        InputStream inputStream = null;
+
+//        InputStream inputStream = null;
         try {
             String strUrl = urlPath.trim();
-            URL url = new URL(strUrl);
-            //打开请求连接
-            URLConnection connection = url.openConnection();
-            HttpURLConnection httpURLConnection = (HttpURLConnection) connection;
-            httpURLConnection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-            inputStream = httpURLConnection.getInputStream();
-            byte[] bs = new byte[1024];
-            int len;
-            while (-1 != (len = inputStream.read(bs))) {
-                resp.getOutputStream().write(bs, 0, len);
-            }
+
+            //System.out.println(strUrl);
+
+            com.mzlion.easyokhttp.HttpClient.get( strUrl )
+                    .asStream( resp.getOutputStream() ) ;
+
+//            strUrl = URLEncoder.encode( strUrl, "UTF-8" ) ;
+//            URL url = new URL(strUrl);
+//
+//            //打开请求连接
+//            URLConnection connection = url.openConnection();
+//            HttpURLConnection httpURLConnection = (HttpURLConnection) connection;
+//            httpURLConnection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+//            inputStream = httpURLConnection.getInputStream();
+//            byte[] bs = new byte[1024];
+//            int len;
+//            while (-1 != (len = inputStream.read(bs))) {
+//                resp.getOutputStream().write(bs, 0, len);
+//            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (inputStream != null) {
-                IOUtils.closeQuietly(inputStream);
-            }
+//            if (inputStream != null) {
+//                IOUtils.closeQuietly(inputStream);
+//            }
         }
     }
 

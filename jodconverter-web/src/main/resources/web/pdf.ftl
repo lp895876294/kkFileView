@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-    <#if pdfUrl?contains("http://")>
+    <#if pdfUrl?contains("http://") || pdfUrl?contains("https://") >
         <#assign finalUrl="${pdfUrl}">
     <#else>
         <#assign finalUrl="${baseUrl}${pdfUrl}">
