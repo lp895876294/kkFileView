@@ -6,7 +6,6 @@
         body{
             margin: 0 auto;
             width:900px;
-            background-color: #CCB;
         }
         .container{
             width: 700px;
@@ -15,9 +14,7 @@
         }
         img{
             width:auto;
-            height:auto;
-            max-width:100%;
-            max-height:100%;
+            height: 500px;
             padding-bottom: 36px;
         }
         span{
@@ -31,9 +28,9 @@
 <div class="container">
     <img src="images/sorry.jpg" />
     <span>
-        该文件类型(${fileType})系统暂时不支持在线预览，<b>说明</b>：
-        <p>${msg}</p>
-        如有需要请联系<a href="mailto:1210893441@qq.com">@HappyPig</a>
+        该文件类型系统暂时不支持在线预览。
+        <#--<b>(${fileType})说明</b>：-->
+        <#--<p>${msg}</p>-->
     </span>
 </div>
 </body>
